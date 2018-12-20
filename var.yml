@@ -1,8 +1,22 @@
+#### Which user to run the playbook ###
 ansible_user: root
-env: dev
-logpath:"/var/log/*.log","/var/log/redis/redis.log"
-elasticnodes: elasticnode1
+
+#### Environment Dev/prod/stg/qa -- according to your hosts groups ###
+envn: dev
+
+#### Technology name: postgres/pgpool/cassandra/redis/stunnel/sentinel/prometheus/kafka/zookeeper ###
+stack: postgres 
+
+#### This is where are those logs to push to elasticsearch, each technology has different path ###
+logpath: "/var/log/*.log","/var/log/redis/redis.log"
+
+#### This is for identifying your elasticnodes ###
+elasticnodes: "elasticnode1","elasticnode2","elasticnode3"
+
+#### Kibana details ####
 kibananode: kibananode1
 kibanausername: admin
 kibanapassword: password
+
+### Place your ssl certs here to copy to target hosts for SSL###
 ssldir: /home/ansible/sslcerts/
