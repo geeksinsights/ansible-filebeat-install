@@ -1,9 +1,7 @@
 ---
 - hosts: "{{envn}}-{{stack}}"
   remote_user: ubuntu
-  vars:
-    
-    ansible_user: root
+  vars: var.yml
   tasks:
     - name: create directory for ssl_certs
       file:
