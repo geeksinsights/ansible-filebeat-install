@@ -1,0 +1,24 @@
+filebeat.inputs:
+- type: log
+  enabled: true
+  paths: [logpath]
+    
+output.elasticsearch:
+  hosts: [elasticnodes]
+  index: "stack-envn-%{[beat.version]}-%{+yyyy.MM.dd}"
+ 
+setup.template.name: "stack"
+setup.template.pattern: "stack-envn-*"
+setup.dashboards.index: "stack-envn-*"
+ 
+setup.kibana:
+  username: "kibanausername"
+  password: "kibanapassword"
+  protocol: "protocol"
+  host: "kibananode"
+  ssl.certificate_authorities:
+    - ssldir/server.crt
+  ssl.certificate: "ssldir/server.crt"
+  ssl.key: "ssldir/server.key"
+
+dashboards.enable: true
