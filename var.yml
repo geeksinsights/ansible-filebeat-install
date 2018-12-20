@@ -1,0 +1,8 @@
+ansible_user: root
+env: dev
+logpath:"/var/log/*.log","/var/log/redis/redis.log"
+elasticnodes: elasticnode1
+kibananode: kibananode1
+kibanausername: admin
+kibanapassword: password
+ssldir: /home/ansible/sslcerts/
