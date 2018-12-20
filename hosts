@@ -1,0 +1,25 @@
+### Example groups of host groups and name, your hosts group will be picked accordingly through the parameter while running play book
+
+[prod-pgpool]
+prodpgpool01.localdomain
+prodpgpool02.localdomain
+
+[dev-pgpool]
+devpgpool01.localdomain
+
+[stg-pgpool]
+stgpgpool01.localdomain
+
+[prod-postgres]
+prodpostgres01.localdomain
+
+[prod-cassandra]
+prodcassandra01.localdomain
+prodcassandra02.localdomain
+prodcassandra03.localdomain
+prodcassandra04.localdomain
+
+[stg-redis]
+stgredis01.localdomain
+stgredis02.localdomain
+stgredis03.localdomain
