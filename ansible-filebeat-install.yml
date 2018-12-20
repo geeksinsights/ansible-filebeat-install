@@ -1,0 +1,69 @@
+---
+- hosts: "{{envn}}-{{stack}}"
+  remote_user: ubuntu
+  vars:
+    
+    ansible_user: root
+  tasks:
+    - name: create directory for ssl_certs
+      file:
+        path: /etc/ssl_certs
+        state: directory
+
+    - name: copy ssl_certs
+      template:
+        src: {{ ssldir }}/server.key
+        dest: /etc/ssl_certs/server.key
+      become: true
+      ignore_errors: true
+
+    - name: copy ssl_certs key
+      template:
+        src: {{ ssldir }}/dev/server.crt
+        dest: /etc/ssl_certs/server.crt
+      become: true
+      ignore_errors: true
+
+    - name: install filebeat
+      shell: |
+        rpm -e filebeat
+        curl -L -O https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-6.5.2-x86_64.rpm
+        rpm -ivh filebeat-6.5.2-x86_64.rpm
+        rm -f /etc/filebeat/filebeat.yml
+        warn: False
+      ignore_errors: true
+
+    - name: Copy templated elasticsearch.yml
+      template:
+        src=filebeat.yml.ssl
+        dest=/etc/filebeat/filebeat.yml
+      become: true
+      ignore_errors: true
+
+    - name: Replace required items in filebeat.yml
+      replace:
+        path: "{{ item.path }}"
+        regexp: "{{ item.regexp1 }}"
+        replace: "{{ item.replace }}"
+      with_items:
+        - { path: '/etc/filebeat/filebeat.yml', regexp1: 'envn', replace: '{{ envn  }}'}
+        - { path: '/etc/filebeat/filebeat.yml', regexp1: 'logpath', replace: '{{ logpath  }}'} 
+        - { path: '/etc/filebeat/filebeat.yml', regexp1: 'stack', replace: '{{ stack  }}'}
+        - { path: '/etc/filebeat/filebeat.yml', regexp1: 'elasticnodes', replace: '{{ elasticnodes  }}'}
+        - { path: '/etc/filebeat/filebeat.yml', regexp1: 'kibananode', replace: '{{ kibananode  }}'}
+        - { path: '/etc/filebeat/filebeat.yml', regexp1: 'kibanausername', replace: '{{ kibanausername  }}'}
+        - { path: '/etc/filebeat/filebeat.yml', regexp1: 'kibanapassword', replace: '{{ kibanapassword  }}'}
+        - { path: '/etc/filebeat/filebeat.yml', regexp1: 'ssldir', replace: '{{ ssldir  }}'}
+    - name: Setup filebeat service to autostart
+      service: name=filebeat state=started enabled=true
+      become: true
+
+    - name: Stop service filebeat, if started
+      service:
+        name: filebeat
+        state: stopped
+
+    - name: Start service filebeat, if started
+      service:
+        name: filebeat
+        state: started
