@@ -14,25 +14,34 @@ git clone
 
 Pre-requisities
 - Hostfile formats
+  
   [env-stack]
   hostname1.localdomain
   hostname2.localdomain
+  
   ex:
   [dev-cassandra]
   devcassandra01.localdomain
   devcassandra02.localdomain
 
 - Variables required to pass through commmand line
+  
   envn=dev|qa|stg|prod (should match with your hostgroup to above)
+  
   stack: technology (should match to your second part of group above)
 
 - SSL (if you want to use SSL)
+  
   sslmode=yes
+  
   place your root.crt and root.key in the playbook directory with names server.key and server.crt
+  
   These files will be copied to /etc/ssl_certs to the target hosts
 
 - Elasticsearch hosts details and Kibana details
+  
   Open filebeat.yml and replace output.elasticsearch add your elastic hosts
+  
   Open filebeat.yml and replace kibana details and add user/password for your kibana
 
 
