@@ -6,12 +6,12 @@ PlayBook for Installing Filebeat in Various clients like
    - 
 
 
-**Install Instructions**
+Install Instructions
 Clone this repository using,
 git clone 
 
 
-**Pre-requisities**
+Pre-requisities
 - Hostfile formats
   
   [env-stack]
@@ -44,7 +44,7 @@ git clone
   Open filebeat.yml and replace kibana details and add user/password for your kibana
 
 
-**Run Playbook**
+Run Playbook
 
 Ex:
 
@@ -83,7 +83,7 @@ ansible-playbook -i hosts ansible-filebeat-install.yml --extra-vars “stack=kaf
 
 ansible-playbook -i hosts ansible-filebeat-install.yml --extra-vars “stack=kafka envn=prod logpath=“/var/log/kafka/server.log”,”/var/log/kafka/controller.log” sslmode=yes”
 
-**For all Zookeeper servers Prod/QA/STG/Dev**
+For all Zookeeper servers Prod/QA/STG/Dev
 
 ansible-playbook -i hosts ansible-filebeat-install.yml --extra-vars “stack=zookeeper envn=prod logpath=“/var/log/kafka/server.log”,”/var/log/kafka/controller.log” sslmode=yes”
 
