@@ -6,12 +6,12 @@ PlayBook for Installing Filebeat in Various clients like
    - 
 
 
-**Install Instructions**
+﻿**Install Instructions**
 Clone this repository using,
 git clone 
 
 
-**Pre-requisities**
+﻿**Pre-requisities**
 - Hostfile formats
   
   [env-stack]
@@ -44,37 +44,35 @@ git clone
   Open filebeat.yml and replace kibana details and add user/password for your kibana
 
 
-**Run Playbook**
+﻿**Run Playbook**
 
 Ex:
 
-Multiple logs
+**Multiple logs**
+
 ansible-playbook -i hosts ansible-filebeat-install.yml --extra-vars “stack=cassandra envn=stg logpath=“/var/log/cassandra/cassandra.log,/var/log/cassandra/system.log” sslmode=yes”
 
-All logs in specified directory
+**All logs in specified directory**
 
 ansible-playbook -i hosts ansible-filebeat-install.yml --extra-vars “stack=cassandra envn=stg logpath=“/var/log/cassandra/*.log” sslmode=yes”
 
 
-For all Prod/QA/STG/Dev cassandra
+**For all Prod/QA/STG/Dev cassandra**
 
 ansible-playbook -i hosts ansible-filebeat-install.yml --extra-vars “stack=cassandra envn=dev logpath=“/var/log/cassandra/cassandra.log,/var/log/cassandra/system.log” sslmode=yes”
 
-
-
 ansible-playbook -i hosts ansible-filebeat-install.yml --extra-vars “stack=cassandra envn=qa logpath=“/var/log/cassandra/cassandra.log,/var/log/cassandra/system.log” sslmode=yes”
-
 
 ansible-playbook -i hosts ansible-filebeat-install.yml --extra-vars “stack=cassandra envn=prod logpath=“/var/log/cassandra/cassandra.log,/var/log/cassandra/system.log” sslmode=yes”
 
-For all Redis Prod/QA/STG/Dev
+**For all Redis Prod/QA/STG/Dev**
 
 ansible-playbook -i hosts ansible-filebeat-install.yml --extra-vars “stack=redis envn=dev logpath=“/var/log/redis/*.log” sslmode=yes”
 
 ansible-playbook -i hosts ansible-filebeat-install.yml --extra-vars “stack=redis envn=qa logpath=“/var/log/redis/*.log” sslmode=yes”
 ansible-playbook -i hosts ansible-filebeat-install.yml --extra-vars “stack=redis envn=stg logpath=“/var/log/redis/*.log” sslmode=yes”
 
-For all Kafka Prod/QA/STG/Dev
+**For all Kafka Prod/QA/STG/Dev**
 
 ansible-playbook -i hosts ansible-filebeat-install.yml --extra-vars “stack=kafka envn=dev logpath=“/var/log/kafka/server.log”,”/var/log/kafka/controller.log” sslmode=yes”
 
@@ -93,7 +91,8 @@ ansible-playbook -i hosts ansible-filebeat-install.yml --extra-vars “stack=zoo
 
 ansible-playbook -i hosts ansible-filebeat-install.yml --extra-vars “stack=zookeeper envn=stg logpath=“/var/log/kafka/server.log”,”/var/log/kafka/controller.log” sslmode=yes”
 
-For all postgres hosts
+**For all postgres hosts**
+
 ansible-playbook -i hosts ansible-filebeat-install.yml --extra-vars “stack=postgres envn=dev logpath=“/data/pg/pg_log/*.log” sslmode=yes”
 
 ansible-playbook -i hosts ansible-filebeat-install.yml --extra-vars “stack=postgres envn=qa logpath=“/data/pg/pg_log/*.log” sslmode=yes”
