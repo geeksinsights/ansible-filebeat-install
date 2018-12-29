@@ -70,6 +70,7 @@ ansible-playbook -i hosts ansible-filebeat-install.yml --extra-vars “stack=cas
 ansible-playbook -i hosts ansible-filebeat-install.yml --extra-vars “stack=redis envn=dev logpath=“/var/log/redis/*.log” sslmode=yes”
 
 ansible-playbook -i hosts ansible-filebeat-install.yml --extra-vars “stack=redis envn=qa logpath=“/var/log/redis/*.log” sslmode=yes”
+
 ansible-playbook -i hosts ansible-filebeat-install.yml --extra-vars “stack=redis envn=stg logpath=“/var/log/redis/*.log” sslmode=yes”
 
 **For all Kafka Prod/QA/STG/Dev**
@@ -77,6 +78,7 @@ ansible-playbook -i hosts ansible-filebeat-install.yml --extra-vars “stack=red
 ansible-playbook -i hosts ansible-filebeat-install.yml --extra-vars “stack=kafka envn=dev logpath=“/var/log/kafka/server.log”,”/var/log/kafka/controller.log” sslmode=yes”
 
 ansible-playbook -i hosts ansible-filebeat-install.yml --extra-vars “stack=kafka envn=qa logpath=“/var/log/kafka/server.log”,”/var/log/kafka/controller.log” sslmode=yes”
+
 ansible-playbook -i hosts ansible-filebeat-install.yml --extra-vars “stack=kafka envn=stg logpath=“/var/log/kafka/server.log”,”/var/log/kafka/controller.log” sslmode=yes”
 
 ansible-playbook -i hosts ansible-filebeat-install.yml --extra-vars “stack=kafka envn=prod logpath=“/var/log/kafka/server.log”,”/var/log/kafka/controller.log” sslmode=yes”
@@ -96,6 +98,7 @@ ansible-playbook -i hosts ansible-filebeat-install.yml --extra-vars “stack=zoo
 ansible-playbook -i hosts ansible-filebeat-install.yml --extra-vars “stack=postgres envn=dev logpath=“/data/pg/pg_log/*.log” sslmode=yes”
 
 ansible-playbook -i hosts ansible-filebeat-install.yml --extra-vars “stack=postgres envn=qa logpath=“/data/pg/pg_log/*.log” sslmode=yes”
+
 ansible-playbook -i hosts ansible-filebeat-install.yml --extra-vars “stack=postgres envn=stg logpath=“/data/pg/pg_log/*.log” sslmode=yes”
 
 ansible-playbook -i hosts ansible-filebeat-install.yml --extra-vars “stack=postgres envn=prod logpath=“/data/pg/pg_log/*.log” sslmode=yes”
