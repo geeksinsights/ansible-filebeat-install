@@ -3,12 +3,12 @@ PlayBook for Installing Filebeat in Various clients like
    - Postgres
    - Kafka/Zookeeper
    - Cassandra
-   - 
-
 
 ﻿**Install Instructions**
+
 Clone this repository using,
-git clone 
+
+   git clone 
 
 
 ﻿**Pre-requisities**
